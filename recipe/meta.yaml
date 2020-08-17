@@ -1,5 +1,5 @@
 {% set name = "example-robot-data" %}
-{% set version = "3.4.2" %}
+{% set version = "3.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,7 @@ package:
 
 source:
   url: https://github.com/Gepetto/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 6575453bd64f34f6adc8a6f1babf8351cc3019fe3f1624213d4b58db48592719
-  patches:
-    - patches/0001-cmake-sync-submodule.patch
-    - patches/0002-cmake-fix-Windows-issue.patch
+  sha256: 3138060f7f4b4bad18c5b9b630d2dd0a6d0355ce238a7dde5a080d3e4be934d9
 
 build:
   number: 0
