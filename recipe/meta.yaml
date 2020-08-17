@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/Gepetto/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 3138060f7f4b4bad18c5b9b630d2dd0a6d0355ce238a7dde5a080d3e4be934d9
-  patches:
-    - patches/0001-cmake-sync-submodule.patch
-    - patches/0002-cmake-fix-Windows-issue.patch
 
 build:
   number: 0
