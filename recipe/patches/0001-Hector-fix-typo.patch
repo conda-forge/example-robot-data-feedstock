@@ -1,0 +1,50 @@
+From 72229d5148883a9f094ad8461fb5c9919294f997 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Tue, 8 Sep 2020 17:24:19 +0200
+Subject: [PATCH 1/2] [Hector] fix typo
+
+And activate tests again
+---
+ python/example_robot_data/robots_loader.py | 3 +--
+ unittest/test_load.py                      | 4 ++--
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/python/example_robot_data/robots_loader.py b/python/example_robot_data/robots_loader.py
+index 5678b8a..91932c6 100644
+--- a/python/example_robot_data/robots_loader.py
++++ b/python/example_robot_data/robots_loader.py
+@@ -3,7 +3,6 @@ import warnings
+ from os.path import dirname, exists, join
+ 
+ import numpy as np
+-
+ import pinocchio as pin
+ from pinocchio.robot_wrapper import RobotWrapper
+ 
+@@ -222,7 +221,7 @@ def loadUR(robot=5, limited=False, gripper=False):
+ 
+ 
+ def loadHector():
+-    return robot_loader('hector_description', "quadroto_base.urdf", free_flyer=True)
++    return robot_loader('hector_description', "quadrotor_base.urdf", free_flyer=True)
+ 
+ 
+ def loadDoublePendulum():
+diff --git a/unittest/test_load.py b/unittest/test_load.py
+index 3ac4760..0485b37 100755
+--- a/unittest/test_load.py
++++ b/unittest/test_load.py
+@@ -22,8 +22,8 @@ class RobotTestCase(unittest.TestCase):
+     def test_double_pendulum(self):
+         self.check('double_pendulum', 2, 2)
+ 
+-    # def test_hector(self):
+-    # self.check('hector', 0, 0)
++    def test_hector(self):
++        self.check('hector', 7, 6)
+ 
+     def test_hyq(self):
+         self.check('hyq', 19, 18)
+-- 
+2.21.1 (Apple Git-122.3)
+
