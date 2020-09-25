@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/Gepetto/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 250925d0dd7644b47c61719c5d31b35831cedf41cd422a569d6721c4b00d55c3
-  patches:
-    - patches/0001-Hector-fix-typo.patch
-    - patches/0002-cmake-sync-submodule.patch
 
 build:
   number: 0
