@@ -10,7 +10,7 @@ source:
   sha256: 1adde4395814153bd08dd5b62d11c0d28c1ddad0032dbd67692583c42cba9942
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -22,10 +22,10 @@ requirements:
     - cmake
     - make  # [not win]
   host:
-    - pinocchio
+    - {{ pin_compatible('pinocchio', min_pin='x.x') }}
     - python
   run:
-    - pinocchio
+    - {{ pin_compatible('pinocchio', min_pin='x.x') }}
     - python
 test:
   requires:
