@@ -25,7 +25,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
   host:
-    - {{ pin_compatible('pinocchio', min_pin='x.x') }}
+    - pinocchio
     - python
   run:
     - {{ pin_compatible('pinocchio', min_pin='x.x') }}
