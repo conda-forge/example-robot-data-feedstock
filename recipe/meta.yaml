@@ -26,11 +26,14 @@ requirements:
     - numpy                                  # [build_platform != target_platform]
     - pinocchio                              # [build_platform != target_platform]
   host:
+    - python
     - pinocchio
-    - python
+    - numpy  # [build_platform != target_platform]
   run:
-    - {{ pin_compatible('pinocchio', min_pin='x.x') }}
     - python
+    - {{ pin_compatible('pinocchio', min_pin='x.x') }}
+    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
+
 test:
   requires:
     - pkg-config
