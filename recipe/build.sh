@@ -12,10 +12,8 @@ if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   cp -r $BUILD_SP_DIR/pinocchio $TARGET_SP_DIR/pinocchio
 fi
 
-cmake .. \
-      -DCMAKE_PREFIX_PATH=$PREFIX \
-      -DCMAKE_INSTALL_PREFIX=$PREFIX \
-      -DCMAKE_INSTALL_LIBDIR=lib \
+cmake ${CMAKE_ARGS} .. \
+      -DCMAKE_CXX_STANDARD=11 \
       -DPYTHON_EXECUTABLE=$PYTHON
 
 make install
