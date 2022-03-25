@@ -10,7 +10,7 @@ source:
   sha256: 1f08502d38ca8ff51f91858ca8fabeb25d0f57836055831ce670fa8f13c396ff
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -28,11 +28,11 @@ requirements:
   host:
     - python
     - pinocchio
-    - numpy  # [build_platform != target_platform]
+    - numpy
   run:
     - python
     - {{ pin_compatible('pinocchio', min_pin='x.x') }}
-    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
+    - {{ pin_compatible('numpy') }}
 
 test:
   requires:
