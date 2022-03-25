@@ -32,7 +32,7 @@ requirements:
   run:
     - python
     - {{ pin_compatible('pinocchio', min_pin='x.x') }}
-    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
+    - {{ pin_compatible('numpy') }}
 
 test:
   requires:
