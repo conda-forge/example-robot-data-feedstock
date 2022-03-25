@@ -28,7 +28,7 @@ requirements:
   host:
     - python
     - pinocchio
-    - numpy  # [build_platform != target_platform]
+    - numpy
   run:
     - python
     - {{ pin_compatible('pinocchio', min_pin='x.x') }}
