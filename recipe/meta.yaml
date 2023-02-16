@@ -1,13 +1,13 @@
 {% set name = "example-robot-data" %}
-{% set version = "4.0.4" %}
+{% set version = "4.0.5" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/Gepetto/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e071a67b178926e4e1275a131b42f952e58c0584eff4c1ca4e47e004ab1f3251
+  url: https://github.com/Gepetto/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: 173776db171058853f083aad6d43e3f3c6c960d030665b02866d0d0597dd74e3
 
 build:
   number: 0
