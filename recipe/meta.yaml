@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/Gepetto/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: e071a67b178926e4e1275a131b42f952e58c0584eff4c1ca4e47e004ab1f3251
+  patches:
+    - patches/all.patch
 
 build:
   number: 1
