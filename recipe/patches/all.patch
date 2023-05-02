@@ -1,0 +1,13 @@
+diff --git a/python/example_robot_data/robots_loader.py b/python/example_robot_data/robots_loader.py
+index f7b558a..36f4529 100644
+--- a/python/example_robot_data/robots_loader.py
++++ b/python/example_robot_data/robots_loader.py
+@@ -5,8 +5,6 @@ import numpy as np
+ import pinocchio as pin
+ from pinocchio.robot_wrapper import RobotWrapper
+
+-pin.switchToNumpyArray()
+-
+
+ def getModelPath(subpath, printmsg=False):
+     source = dirname(dirname(dirname(__file__)))  # top level source directory
