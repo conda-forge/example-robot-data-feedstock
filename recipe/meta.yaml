@@ -1,5 +1,5 @@
 {% set name = "example-robot-data" %}
-{% set version = "4.0.5" %}
+{% set version = "4.0.6" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/Gepetto/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4ffc9e915e9a332c9b2e847c03e29abf6b63f0368e6d38a97f4181943ed8b72c
+  sha256: 68e3ea40e0f97ecec9d7562bcee36d922aafa3d6f3d9012aaad06b63f95e1bbb
   patches:
     - patches/all.patch
 
