@@ -3,7 +3,6 @@
 mkdir build
 cd build
 
-export BUILD_SP_DIR=$( $PYTHON -c "import site; print(site.getsitepackages()[0])")
 export BUILD_SP_DIR=$( $PYTHON -c "import pinocchio; print (pinocchio.__file__.split('/pinocchio/__init__.py')[0])")
 export TARGET_SP_DIR=$SP_DIR
 
