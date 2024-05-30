@@ -15,17 +15,17 @@ build:
 
 requirements:
   build:
-    - python
+    - python >=3.8
     - numpy
     - cmake
     - make  # [not win]
   host:
-    - python
+    - python >=3.8
     - eigenpy
     - pinocchio >=2,<4
     - numpy
   run:
-    - python
+    - python >=3.8
     - numpy
     - pinocchio >=2,<4
 
