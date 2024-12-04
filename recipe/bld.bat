@@ -5,7 +5,7 @@ cd build
 
 ::Configure
 cmake ^
-    -G "NMake Makefiles" ^
+    -G "Ninja" ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DPYTHON_EXECUTABLE=%PYTHON% ^
     -DPYTHON_SITELIB=%SP_DIR% ^
@@ -13,5 +13,5 @@ cmake ^
 if errorlevel 1 exit 1
 
 :: Install
-cmake --build . --config Release --target install
+ninja install
 if errorlevel 1 exit 1
