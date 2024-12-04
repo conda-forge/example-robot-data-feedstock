@@ -22,20 +22,24 @@ requirements:
     - cmake
     - make  # [not win]
   host:
-    - python >=3.8
+    - python 3.10
     - eigenpy
-    - pinocchio >=2,<4
+    - pinocchio
     - numpy
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - numpy
-    - pinocchio >=2,<4
+    - pinocchio
+    - __unix  # [unix]
+    - __win   # [win]
 
 test:
   requires:
     - pkg-config
   commands:
     - pkg-config --modversion {{ name }}
+    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\example-robot-data\\example-robot-dataConfig.cmake exit 1  # [win]
+    - test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake # [unix]
   imports:
     - example_robot_data
 
