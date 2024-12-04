@@ -36,7 +36,7 @@ test:
     - pkg-config
   commands:
     - pkg-config --modversion {{ name }}
-    - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\example-robot-data\\example-robot-dataConfig.cmake exit 1  # [win]
+    - if not exist %LIBRARY_PREFIX%\lib\cmake\example-robot-data\example-robot-dataConfig.cmake exit 1  # [win]
     - test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake  # [unix]
   imports:
     - example_robot_data
