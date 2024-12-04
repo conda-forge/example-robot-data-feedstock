@@ -17,10 +17,8 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
-    - python >=3.8
-    - numpy
     - cmake
-    - make  # [not win]
+    - ninja
   host:
     - python 3.10
     - eigenpy
@@ -39,7 +37,7 @@ test:
   commands:
     - pkg-config --modversion {{ name }}
     - if not exist %LIBRARY_PREFIX%\\lib\\cmake\\example-robot-data\\example-robot-dataConfig.cmake exit 1  # [win]
-    - test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake # [unix]
+    - test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake  # [unix]
   imports:
     - example_robot_data
 
