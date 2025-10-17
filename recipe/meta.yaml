@@ -1,8 +1,9 @@
 {% set name = "example-robot-data" %}
+{% set pythonname = "example-robot-data-loaders" %}
 {% set version = "4.1.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-split
   version: {{ version }}
 
 source:
@@ -10,36 +11,51 @@ source:
   sha256: 943e59fe5ab071f83729197584b452e8890562b36b391b0b4042867de034c2b5
 
 build:
+  number: 6
   noarch: python
-  number: 5
 
-requirements:
-  build:
-    - {{ compiler('cxx') }}
-    - {{ stdlib('c') }}
-    - cmake
-    - ninja
-  host:
-    - python 3.10
-    - eigenpy
-    - pinocchio
-    - numpy
-  run:
-    - python >={{ python_min }}
-    - numpy
-    - pinocchio
-    - __unix  # [unix]
-    - __win   # [win]
-
-test:
-  requires:
-    - pkg-config
-  commands:
-    - pkg-config --modversion {{ name }}
-    - if not exist %LIBRARY_PREFIX%\lib\cmake\example-robot-data\example-robot-dataConfig.cmake exit 1  # [win]
-    - test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake  # [unix]
-  imports:
-    - example_robot_data
+outputs:
+  - name: {{ name }}
+    script: build_resources.sh   # [not win]
+    script: build_resources.bat  # [win]
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
+        - cmake
+        - ninja
+      run:
+        - __unix  # [unix]
+        - __win   # [win]
+    test:
+      requires:
+        - pkg-config
+      commands:
+        - pkg-config --modversion {{ name }}
+        - if not exist %LIBRARY_PREFIX%\lib\cmake\example-robot-data\example-robot-dataConfig.cmake exit 1  # [win]
+        - test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake  # [unix]
+  - name: {{ pythonname }}
+    script: build_python.sh   # [not win]
+    script: build_python.bat  # [win]
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
+        - cmake
+        - ninja
+      host:
+        - python {{ python_min }}
+        - eigenpy
+        - libpinocchio
+        - numpy
+      run:
+        - python >={{ python_min }}
+        - numpy
+        - pinocchio-python
+        - {{ pin_subpackage(name, exact=true) }}
+    test:
+      imports:
+        - example_robot_data
 
 about:
   home: http://github.com/Gepetto/example-robot-data
