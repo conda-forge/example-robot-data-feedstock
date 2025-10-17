@@ -48,6 +48,7 @@ outputs:
         - eigenpy
         - libpinocchio
         - numpy
+        - {{ pin_subpackage(name, exact=true) }}
       run:
         - python >={{ python_min }}
         - numpy
