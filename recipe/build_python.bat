@@ -6,6 +6,7 @@ cd build
 
 cmake %CMAKE_ARGS% .. ^
       -G "Ninja" ^
+      -DPYTHON_SITELIB=%SP_DIR% ^
       -DBUILD_PYTHON_INTERFACE=ON ^
       -DBUILD_STANDALONE_PYTHON_INTERFACE=ON ^
       -DBUILD_DOCUMENTATION=OFF
