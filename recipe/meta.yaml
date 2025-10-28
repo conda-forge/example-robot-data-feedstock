@@ -44,7 +44,7 @@ outputs:
         - cmake
         - ninja
       host:
-        - python {{ python_min }}
+        - python >={{ python_min }}
         - eigenpy
         - libpinocchio
         - numpy
