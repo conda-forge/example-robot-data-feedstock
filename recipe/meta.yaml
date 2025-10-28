@@ -12,10 +12,11 @@ source:
 
 build:
   number: 1
-  noarch: python
 
 outputs:
   - name: {{ name }}
+    build:
+      noarch: generic
     script: build_resources.sh   # [not win]
     script: build_resources.bat  # [win]
     requirements:
@@ -37,6 +38,8 @@ outputs:
   - name: {{ pythonname }}
     script: build_python.sh   # [not win]
     script: build_python.bat  # [win]
+    build:
+      noarch: python
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -55,6 +58,8 @@ outputs:
         - pinocchio-python
         - {{ pin_subpackage(name, exact=true) }}
     test:
+      requires:
+        - python {{ python_min }}
       imports:
         - example_robot_data
 
