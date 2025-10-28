@@ -12,12 +12,13 @@ source:
 
 build:
   number: 1
-  noarch: python
 
 outputs:
   - name: {{ name }}
     script: build_resources.sh   # [not win]
     script: build_resources.bat  # [win]
+    build:
+      noarch: python
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -37,6 +38,8 @@ outputs:
   - name: {{ pythonname }}
     script: build_python.sh   # [not win]
     script: build_python.bat  # [win]
+    build:
+      noarch: python
     requirements:
       build:
         - {{ compiler('cxx') }}
