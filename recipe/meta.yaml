@@ -15,6 +15,8 @@ build:
 
 outputs:
   - name: {{ name }}
+    build:
+      noarch: generic
     script: build_resources.sh   # [not win]
     script: build_resources.bat  # [win]
     requirements:
