@@ -1,23 +1,23 @@
 {% set name = "example-robot-data" %}
 {% set pythonname = "example-robot-data-loaders" %}
-{% set version = "4.4.0" %}
+{% set version = "5.0.0" %}
 
 package:
   name: {{ name|lower }}-split
   version: {{ version }}
 
 source:
-  url: https://github.com/Gepetto/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 024404b719c1d45fa669ed109da1d0fdb0a9a5793cdc7c14d05a874bdf7a80a0
+  url: https://github.com/Gepetto/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: 961db1b713173aad39335d5ad99804da0e394d23eac2a8e101d6295152b1088c
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: {{ name }}
     build:
       noarch: generic
-    script: build_resources.sh   # [not win]
+    script: build_resources.sh  # [not win]
     script: build_resources.bat  # [win]
     requirements:
       build:
@@ -36,7 +36,7 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\lib\cmake\example-robot-data\example-robot-dataConfig.cmake exit 1  # [win]
         - test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake  # [unix]
   - name: {{ pythonname }}
-    script: build_python.sh   # [not win]
+    script: build_python.sh  # [not win]
     script: build_python.bat  # [win]
     build:
       noarch: python
