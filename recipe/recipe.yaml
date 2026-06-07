@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: example-robot-data
-  python-name: example-robot-data-loaders
+  pythonname: example-robot-data-loaders
   version: "5.0.0"
 
 recipe:
@@ -45,7 +45,7 @@ outputs:
             then: if not exist %LIBRARY_PREFIX%\lib\cmake\example-robot-data\example-robot-dataConfig.cmake exit 1
             else: test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake
   - package:
-      name: ${{ python-name }}
+      name: ${{ pythonname }}
     build:
       noarch: python
       script:
@@ -59,7 +59,7 @@ outputs:
         - cmake
         - ninja
       host:
-        - python ${{ python_min }}
+        - python ${{ python_min }}.*
         # - eigenpy
         # - libpinocchio
         # - numpy
@@ -76,9 +76,6 @@ outputs:
             - example_robot_data
           pip_check: false
           python_version: ${{ python_min }}
-      - requirements:
-          run:
-            - python ${{ python_min }}
 
 about:
   license: BSD-3-Clause
@@ -91,4 +88,3 @@ extra:
   recipe-maintainers:
     - jorisv
     - jcarpent
-
