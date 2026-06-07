@@ -53,6 +53,10 @@ outputs:
           then: build_python.sh
           else: build_python.bat
     requirements:
+      ignore_run_exports:
+        from_package:
+          - eigenpy
+          - libpinocchio
       build:
         - ${{ compiler('cxx') }}
         - ${{ stdlib('c') }}
@@ -60,9 +64,8 @@ outputs:
         - ninja
       host:
         - python ${{ python_min }}.*
-        # - eigenpy
-        # - libpinocchio
-        # - numpy
+        - eigenpy
+        - libpinocchio
         - ${{ pin_subpackage(name, exact=true) }}
       run:
         - python >=${{ python_min }}
