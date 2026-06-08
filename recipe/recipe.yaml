@@ -1,0 +1,98 @@
+schema_version: 1
+
+context:
+  name: example-robot-data
+  pythonname: example-robot-data-loaders
+  version: "5.0.0"
+
+recipe:
+  name: ${{ name|lower }}-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/Gepetto/${{ name }}/archive/v${{ version }}.tar.gz
+  sha256: 961db1b713173aad39335d5ad99804da0e394d23eac2a8e101d6295152b1088c
+
+build:
+  number: 1
+
+outputs:
+  - package:
+      name: ${{ name }}
+    build:
+      noarch: generic
+      script:
+        - if: unix
+          then: build_resources.sh
+          else: build_resources.bat
+    requirements:
+      build:
+        # On windows, maybe because of noarch generic
+        # there is no MSVC installation available.
+        # We switch to clangxx to overcome this...
+        - if: unix
+          then: ${{ compiler('cxx') }}
+          else: ${{ compiler('clangxx') }}
+        - ${{ stdlib('c') }}
+        - cmake
+        - ninja
+      run:
+        - if: unix
+          then: __unix
+          else: __win
+    tests:
+      - requirements:
+          run:
+            - pkg-config
+        script:
+          - pkg-config --modversion ${{ name }}
+          - if: win
+            then: if not exist %LIBRARY_PREFIX%\lib\cmake\example-robot-data\example-robot-dataConfig.cmake exit 1
+            else: test -f $PREFIX/lib/cmake/example-robot-data/example-robot-dataConfig.cmake
+  - package:
+      name: ${{ pythonname }}
+    build:
+      noarch: python
+      script:
+        - if: unix
+          then: build_python.sh
+          else: build_python.bat
+    requirements:
+      ignore_run_exports:
+        from_package:
+          - eigenpy
+          - libpinocchio
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake
+        - ninja
+      host:
+        - python ${{ python_min }}.*
+        - eigenpy
+        - libpinocchio
+        - ${{ pin_subpackage(name, exact=true) }}
+      run:
+        - python >=${{ python_min }}
+        - numpy
+        - pinocchio-python
+        - coal-python
+        - ${{ pin_subpackage(name, exact=true) }}
+    tests:
+      - python:
+          imports:
+            - example_robot_data
+          pip_check: false
+          python_version: ${{ python_min }}
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Set of robot URDFs for benchmarking and developed examples
+  homepage: http://github.com/Gepetto/example-robot-data
+  repository: https://github.com/Gepetto/example-robot-data
+
+extra:
+  recipe-maintainers:
+    - jorisv
+    - jcarpent
