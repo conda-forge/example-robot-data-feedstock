@@ -1,11 +1,13 @@
-c_compiler:
-- vs2022
 c_stdlib:
 - vs
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+clangxx_compiler:
+- clang-cl
+clangxx_compiler_version:
+- '19'
 cxx_compiler:
 - vs2022
 python_min:
