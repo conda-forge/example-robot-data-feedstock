@@ -12,6 +12,9 @@ source:
 
 build:
   number: 0
+  ignore_run_exports_from:
+    - libpinocchio
+    - eigenpy
 
 outputs:
   - name: {{ name }}
@@ -47,15 +50,15 @@ outputs:
         - cmake
         - ninja
       host:
-        - python {{ python_min }}
+        - python {{ python_min }}.*
         - eigenpy
         - libpinocchio
-        - numpy
         - {{ pin_subpackage(name, exact=true) }}
       run:
         - python >={{ python_min }}
         - numpy
         - pinocchio-python
+        - coal-python
         - {{ pin_subpackage(name, exact=true) }}
     test:
       requires:
