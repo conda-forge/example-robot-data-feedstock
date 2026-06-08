@@ -27,8 +27,12 @@ outputs:
           else: build_resources.bat
     requirements:
       build:
-        - ${{ compiler('c') }}
-        - ${{ compiler('cxx') }}
+        # On windows, maybe because of noarch generic
+        # there is no MSVC installation available.
+        # We switch to clangxx to overcome this...
+        - if: unix
+          then: ${{ compiler('cxx') }}
+          else: ${{ compiler('clangxx') }}
         - ${{ stdlib('c') }}
         - cmake
         - ninja
@@ -59,7 +63,6 @@ outputs:
           - eigenpy
           - libpinocchio
       build:
-        - ${{ compiler('c') }}
         - ${{ compiler('cxx') }}
         - ${{ stdlib('c') }}
         - cmake
