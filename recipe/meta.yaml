@@ -11,7 +11,7 @@ source:
   sha256: 961db1b713173aad39335d5ad99804da0e394d23eac2a8e101d6295152b1088c
 
 build:
-  number: 0
+  number: 1
   ignore_run_exports_from:
     - libpinocchio
     - eigenpy
