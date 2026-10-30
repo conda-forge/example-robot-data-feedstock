@@ -1,6 +1,6 @@
 {% set name = "example-robot-data" %}
 {% set pythonname = "example-robot-data-loaders" %}
-{% set version = "5.0.0" %}
+{% set version = "6.0.0" %}
 
 package:
   name: {{ name|lower }}-split
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://github.com/Gepetto/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 961db1b713173aad39335d5ad99804da0e394d23eac2a8e101d6295152b1088c
+  sha256: 10e2e6081a69b91dffad568f64173f025320d886d2f866f193384f2026495524
 
 build:
-  number: 1
+  number: 0
   ignore_run_exports_from:
     - libpinocchio
     - eigenpy
