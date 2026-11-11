@@ -1,6 +1,6 @@
 {% set name = "example-robot-data" %}
 {% set pythonname = "example-robot-data-loaders" %}
-{% set version = "6.0.0" %}
+{% set version = "7.0.0" %}
 
 package:
   name: {{ name|lower }}-split
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/Gepetto/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 10e2e6081a69b91dffad568f64173f025320d886d2f866f193384f2026495524
+  sha256: 9b9b662d6ea6816edf635de09667405748661333f0d7ae0439a017994234aac0
 
 build:
   number: 0
